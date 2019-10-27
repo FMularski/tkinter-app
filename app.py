@@ -2,13 +2,23 @@ import tkinter as tk
 from tkinter import filedialog, Text
 import os
 
+root = tk.Tk()
+apps = []
+
 
 def add_app():
+    for widget in frame.winfo_children():
+        widget.destroy()
+
     filename = filedialog.askopenfile(initialdir='/', title='Select file',
                                       filetypes=(('executables', '*.exe'), ('all files', '*.*')))
+    apps.append(filename)
+
+    for app in apps:
+        label = tk.Label(frame, text=app.name, bg='gray')
+        label.pack()
 
 
-root = tk.Tk()
 canvas = tk.Canvas(root, height=700, width=700, bg='#263D42')
 canvas.pack()
 
